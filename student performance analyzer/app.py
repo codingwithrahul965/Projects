@@ -12,7 +12,7 @@ students = np.array([
 
 # Marks in three subjects: Python, Maths, and Computer Science
 marks = np.array([
-    [85, 90, 88],
+    [85, 0, 88],
     [72, 65, 70],
     [95, 92, 98],
     [40, 55, 48],
@@ -32,12 +32,18 @@ subject_averages = np.mean(marks, axis=0)
 highest_mark = np.max(marks)
 lowest_mark = np.min(marks)
 
+
 # Find the student with the highest total
 topper_index = np.argmax(total_marks)
+
 
 print("=" * 45)
 print("       STUDENT PERFORMANCE ANALYZER")
 print("=" * 45)
+
+print("Shape:", marks.shape)
+print("Dimensions:", marks.ndim)
+print("Total marks values:", total_marks)
 
 for i in range(len(students)):
     result = "PASS" if np.all(marks[i] >= 40) else "FAIL"
@@ -47,6 +53,14 @@ for i in range(len(students)):
     print(f"Total: {total_marks[i]} / 300")
     print(f"Percentage: {percentage[i]:.2f}%")
     print(f"Result: {result}")
+
+# Count passing and failing students
+passed_students = np.sum(np.all(marks >= 40, axis=1))
+failed_students = len(students) - passed_students
+
+print(f"\nStudents Passed: {passed_students}")
+print(f"Students Failed: {failed_students}")
+
 
 print("\n" + "=" * 45)
 print("          CLASS SUMMARY")
